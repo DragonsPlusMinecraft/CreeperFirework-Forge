@@ -3,6 +3,7 @@ package love.marblegate.creeperfirework.mixin;
 import com.google.common.collect.Sets;
 import com.mojang.datafixers.util.Pair;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import love.marblegate.creeperfirework.easteregg.ItemRegistry;
 import love.marblegate.creeperfirework.misc.Configuration;
 import love.marblegate.creeperfirework.network.Networking;
 import love.marblegate.creeperfirework.network.Packet;
@@ -13,6 +14,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
@@ -63,6 +65,11 @@ public abstract class MixinCreeperEntity extends Monster {
         if (Configuration.ACTIVE_EXPLOSION_TO_FIREWORK.get() && new Random(((Creeper) (Object) this).getUUID().getLeastSignificantBits()).nextDouble() < Configuration.ACTIVE_EXPLOSION_TURNING_PROBABILITY.get()) {
             if (!((Creeper) (Object) this).getLevel().isClientSide()) {
                 sendEffectPacket(((Creeper) (Object) this).getLevel(), ((Creeper) (Object) this).blockPosition(), ((Creeper) (Object) this).getEntityData().get(DATA_IS_POWERED));
+                var itemStack = new ItemStack(ItemRegistry.CREEPER_HANDMADE_FIREWORK.get(),16);
+                if(new Random(((Creeper) (Object) this).getUUID().getLeastSignificantBits()).nextDouble() < 0.02){
+                    ((Creeper) (Object) this).getLevel().addFreshEntity(new ItemEntity(((Creeper) (Object) this).getLevel(),
+                            ((Creeper) (Object) this).getX(),((Creeper) (Object) this).getY() + 0.5,((Creeper) (Object) this).getZ(), itemStack));
+                }
                 if (Configuration.ACTIVE_EXPLOSION_HURT_CREATURE.get())
                     simulateExplodeHurtMob();
 

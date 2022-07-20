@@ -1,9 +1,11 @@
 package love.marblegate.creeperfirework.misc;
 
 import com.google.common.collect.Lists;
+import net.minecraft.nbt.ByteTag;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 import java.util.Random;
@@ -19,6 +21,24 @@ public class FireworkManufacturer {
 
         CompoundTag ret = new CompoundTag();
         ret.put("Explosions", mimicFireworkItemNbtStructureContainer);
+        return ret;
+    }
+
+    public static ItemStack generateHandmade(ItemStack fireworkItemStack) {
+        var ret = fireworkItemStack.copy();
+        var random = new Random();
+        CompoundTag fireworkInfoNbt = new CompoundTag();
+        CompoundTag singleIngredientNbt;
+        ListTag mimicFireworkItemNbtStructureContainer = new ListTag();
+        singleIngredientNbt = generateColorNBT();
+        singleIngredientNbt.putBoolean("Flicker", random.nextBoolean());
+        singleIngredientNbt.putByte("Type", (byte) (random.nextInt(4)+1));
+        singleIngredientNbt.putBoolean("Trail", true);
+        mimicFireworkItemNbtStructureContainer.add(singleIngredientNbt);
+        fireworkInfoNbt.put("Explosions", mimicFireworkItemNbtStructureContainer);
+        ByteTag byteTag = ByteTag.valueOf((byte) (2 + random.nextInt(2)));
+        fireworkInfoNbt.put("Flight", byteTag);
+        ret.addTagElement("Fireworks",fireworkInfoNbt);
         return ret;
     }
 
