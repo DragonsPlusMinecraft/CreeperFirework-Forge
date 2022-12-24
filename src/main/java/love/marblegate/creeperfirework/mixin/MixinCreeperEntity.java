@@ -125,7 +125,7 @@ public abstract class MixinCreeperEntity extends Monster {
                         u /= blockPos;
                         double fluidState = Explosion.getSeenPercent(groundZero, victim);
                         double v = (1.0D - h) * fluidState;
-                        victim.hurt(DamageSource.explosion((Creeper) (Object) this), (float) ((int) ((v * v + v) / 2.0D * 7.0D * (double) j + 1.0D)));
+                        victim.hurt(DamageSource.explosion((Creeper) (Object) this,null), (float) ((int) ((v * v + v) / 2.0D * 7.0D * (double) j + 1.0D)));
                         double w = ProtectionEnchantment.getExplosionKnockbackAfterDampener((LivingEntity) victim, v);
 
                         victim.setDeltaMovement(victim.getDeltaMovement().add(s * w, t * w, u * w));
