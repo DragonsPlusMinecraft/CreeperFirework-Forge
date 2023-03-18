@@ -1,6 +1,6 @@
-package love.marblegate.creeperfirework;
+package plus.dragons.creeperfirework;
 
-import love.marblegate.creeperfirework.misc.Configuration;
+import plus.dragons.creeperfirework.misc.Configuration;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;

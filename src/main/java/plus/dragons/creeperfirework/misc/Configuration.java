@@ -1,4 +1,4 @@
-package love.marblegate.creeperfirework.misc;
+package plus.dragons.creeperfirework.misc;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 

@@ -21,7 +21,7 @@ apply plugin: 'signing'
 apply plugin: 'org.spongepowered.mixin'
 
 version = mod_version
-group = 'love.marblegate' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'love.marblegate.creeperfirework' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "creeper_firework-${artifact_minecraft_version}"
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.

@@ -1,6 +1,6 @@
-package love.marblegate.creeperfirework.network;
+package plus.dragons.creeperfirework.network;
 
-import love.marblegate.creeperfirework.misc.FireworkManufacturer;
+import plus.dragons.creeperfirework.misc.FireworkManufacturer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;

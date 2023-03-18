@@ -1,4 +1,4 @@
-package love.marblegate.creeperfirework.network;
+package plus.dragons.creeperfirework.network;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

@@ -1,11 +1,11 @@
-package love.marblegate.creeperfirework.mixin;
+package plus.dragons.creeperfirework.mixin;
 
 import com.google.common.collect.Sets;
 import com.mojang.datafixers.util.Pair;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import love.marblegate.creeperfirework.misc.Configuration;
-import love.marblegate.creeperfirework.network.Networking;
-import love.marblegate.creeperfirework.network.Packet;
+import plus.dragons.creeperfirework.misc.Configuration;
+import plus.dragons.creeperfirework.network.Networking;
+import plus.dragons.creeperfirework.network.Packet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerLevel;
@@ -125,7 +125,7 @@ public abstract class MixinCreeperEntity extends Monster {
                         u /= blockPos;
                         double fluidState = Explosion.getSeenPercent(groundZero, victim);
                         double v = (1.0D - h) * fluidState;
-                        victim.hurt(DamageSource.explosion((Creeper) (Object) this,null), (float) ((int) ((v * v + v) / 2.0D * 7.0D * (double) j + 1.0D)));
+                        victim.hurt(victim.damageSources().explosion((Creeper) (Object) this,null), (float) ((int) ((v * v + v) / 2.0D * 7.0D * (double) j + 1.0D)));
                         double w = ProtectionEnchantment.getExplosionKnockbackAfterDampener((LivingEntity) victim, v);
 
                         victim.setDeltaMovement(victim.getDeltaMovement().add(s * w, t * w, u * w));
@@ -156,7 +156,7 @@ public abstract class MixinCreeperEntity extends Monster {
                         double n = groundZero.getY();
                         double o = groundZero.getZ();
                         for (; h > 0.0F; h -= 0.22500001F) {
-                            BlockPos blockPos = new BlockPos(m, n, o);
+                            BlockPos blockPos = BlockPos.containing(m, n, o);
                             BlockState blockState = ((Creeper) (Object) this).getLevel().getBlockState(blockPos);
                             FluidState fluidState = ((Creeper) (Object) this).getLevel().getFluidState(blockPos);
                             if (!((Creeper) (Object) this).getLevel().isInWorldBounds(blockPos)) {
